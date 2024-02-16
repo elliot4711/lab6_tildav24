@@ -1,4 +1,6 @@
 import random
+import timeit
+
 class songinfo:
     
     def __init__(self, trackid, songid, artistname, songname):
@@ -26,19 +28,16 @@ def read_list():
 
     return infolist
 
-infolist = read_list()
 
 def linear_search(the_list):
     """
     From lecture 4
     """
-    key_value = random.randint(0, len(the_list) + 1)
-    key = the_list[key_value].getartistname()
+    #key_value = random.randint(0, len(the_list))
+    key = the_list[len(the_list)-1].getartistname()
 
     for x in the_list:
         if x.getartistname() == key:
-            print(x.getartistname())
-            print(key)
             return True
     return False
 
@@ -47,7 +46,7 @@ def binary_search(the_list):
     Partially from chatgpt
     """
 
-    key_value = random.randint(0, len(the_list) + 1)
+    key_value = random.randint(0, len(the_list))
     key = the_list[key_value].getartistname()
     
     low = 0
@@ -79,17 +78,26 @@ def make_dict(infolist):
     return namedict
 
 def hashtable_search(namedict, the_list):
-    key_value = random.randint(0, len(the_list) + 1)
+    key_value = random.randint(0, len(the_list))
     key = the_list[key_value].getartistname()
-    print(key)
-    print(namedict[key].getartistname())
     if key in namedict:
         return namedict[key].getartistname()
     else: 
         return None
 
+numbers_tried = 10000
+infolist = read_list()
+
+linjtime = timeit.timeit(stmt = lambda: linear_search(infolist), number = numbers_tried)
+print("Linearsearch took", round(linjtime, 8) , "seconds")
+
+infolist = sort_list(infolist)
+bintime = timeit.timeit(stmt = lambda: binary_search(infolist), number = numbers_tried)
+print("Binarysearch took", round(bintime, 8) , "seconds")
+
 namedict = make_dict(infolist)
-hashtable_search(namedict, infolist)
+hashtime = timeit.timeit(stmt = lambda: hashtable_search(namedict, infolist), number = numbers_tried)
+print("Hashsearch took", round(hashtime, 8) , "seconds")
 
 
 
