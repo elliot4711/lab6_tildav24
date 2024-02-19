@@ -31,7 +31,7 @@ class HeapNode:
 
 class Heap:
     """
-    From lecture 8
+    From lecture 8 but edited to be minheap
     """
     def __init__(self):
         self.maxsize = 32
@@ -145,6 +145,6 @@ Selectionsort took 8.0347415 seconds
 Heapsort took 0.00322208 seconds
 
 For n = 100000
-Selectionsort took 1018.75426604 seconds
-Heapsort took 0.03485221 seconds
+Selectionsort took 975.50067467 seconds
+Heapsort took 0.03396679 seconds
 """
