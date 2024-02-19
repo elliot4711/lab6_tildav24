@@ -8,6 +8,7 @@ def main():
         print(binary_search(the_list, key))
         key = input().strip()
 
+#From chatGPT
 def binary_search(arr, key):
     low = 0
     high = len(arr) - 1

@@ -88,7 +88,7 @@ def hashtable_search(namedict, the_list):
 numbers_tried = 10000
 infolist = read_list()
 oldlist = infolist
-infolist = infolist[0:250000]
+#infolist = infolist[0:250000]
 
 linjtime = timeit.timeit(stmt = lambda: linear_search(infolist), number = numbers_tried)
 print("Linearsearch took", round(linjtime / numbers_tried, 8) , "seconds")
