@@ -2,7 +2,10 @@ import random
 import timeit
 
 class songinfo:
-    
+    """
+    Class to store info from unique_tracks text file
+    """
+
     def __init__(self, trackid, songid, artistname, songname):
         self.trackid = trackid
         self.songid = songid
@@ -19,6 +22,12 @@ class songinfo:
         return self.artistname < other.artistname
 
 def read_list():
+    """
+    Function that reads text file and returns it as a list of songinfo class objects
+    Parameters: None
+    Returns: list of songinfo class objects
+    """
+
     infolist = []
     with open("unique_tracks.txt", "r", encoding = "utf-8") as trackfile:
         for row in trackfile:
@@ -31,6 +40,10 @@ def read_list():
 
 def linear_search(the_list):
     """
+    Function that uses a linear search method to search for a randomly generated key in a list
+    Parameters: the list to search for a random key in
+    Returns: True or False depending on if key is found or not (should always be found)
+
     From lecture 4
     """
     key_value = random.randint(0, len(the_list))
@@ -43,6 +56,10 @@ def linear_search(the_list):
 
 def binary_search(the_list):
     """
+    Function that uses a binary search method to search for a randomly generated key in a list
+    Parameters: the list to search for a random key in
+    Returns: Key value if found or None if not (should always be found)
+
     Partially from chatgpt
     """
 
@@ -65,12 +82,23 @@ def binary_search(the_list):
 
 def sort_list(infolist):
     """
+    Function that sorts a list using the .sort() method and returns the list
+    Parameters: the list to sort
+    Returns: sorted list
+
     From stackoverflow
     """
+
     infolist.sort(key=lambda x: x.songname, reverse=False)
     return infolist
 
 def make_dict(infolist):
+    """
+    Function that turns a list into a dictionary with the key as the song name and the value as the corresponding songinfo class object
+    Parameters: the list to turn into dictionary
+    Returns: dictionary
+    """
+
     namedict = dict()
     for object in infolist:
         namedict[object.getsongname()] = object
@@ -78,8 +106,15 @@ def make_dict(infolist):
     return namedict
 
 def hashtable_search(namedict, the_list):
+    """
+    Function that uses a hashtable search method to search for a randomly generated key in a list
+    Parameters: the dictionary to search from, and the list to take the key from
+    Returns: The value on that key if key is found or None if not (should always be found)
+    """
+
     key_value = random.randint(0, len(the_list))
     key = the_list[key_value].getsongname()
+    
     if key in namedict:
         return namedict[key].getsongname()
     else: 
